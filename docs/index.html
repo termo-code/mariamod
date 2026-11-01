@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mariamod | Descargas y Guía</title>
+    <meta name="description" content="Descarga Mariamod, el mod de cultivo y selección genética para Minecraft Java (NeoForge).">
+    <meta name="theme-color" content="#0a0e0b">
+    <link rel="icon" href="icon.ico">
+    <style>
+        :root {
+          --bg: #0a0e0b;
+          --panel: #111812;
+          --panel2: #172019;
+          --border: #263528;
+          --text: #e6efe7;
+          --muted: #8fa393;
+          --accent: #4ade80;
+          --accent-d: #16a34a;
+          --warn: #fbbf24;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+
+        [hidden] { display: none !important; }
+        html { scroll-behavior: smooth; }
+        body {
+          margin: 0;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          color: var(--text);
+          background: radial-gradient(1100px 520px at 50% -180px, #14391f 0%, transparent 70%), var(--bg);
+          font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+        .wrap { width: min(1000px, 92%); margin-inline: auto; }
+        a { color: var(--accent); }
+        .hero { padding: 56px 0 28px; text-align: center; }
+        .kicker { margin: 0; color: var(--muted); letter-spacing: .25em; font-size: .8rem; }
+        h1 {
+          margin: 8px 0 12px;
+          font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+          font-size: clamp(2.4rem, 9vw, 4.6rem);
+          letter-spacing: .12em;
+          color: var(--accent);
+          text-shadow: 4px 4px 0 #14532d;
+        }
+        .lead { margin: 0 auto; max-width: 620px; color: #c4d4c7; font-size: 1.1rem; }
+        .badges { margin-top: 18px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .badges span {
+          padding: 3px 12px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          background: var(--panel);
+          color: var(--muted);
+          font-size: .85rem;
+        }
+        main { flex: 1; padding-bottom: 40px; }
+        h2 { margin: 48px 0 16px; font-size: 1.5rem; text-align: center; color: var(--accent); }
+        h3 { margin: 22px 0 10px; font-size: 1.05rem; color: #c4d4c7; text-align: center; }
+
+        /* Sección de galería */
+        .gallery {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 16px;
+          margin: 24px 0;
+        }
+        .gallery-item {
+          background: var(--panel);
+          border: 2px solid var(--border);
+          border-radius: 10px;
+          overflow: hidden;
+          text-align: center;
+          flex: 1 1 280px;
+          max-width: 320px;
+        }
+        .gallery-placeholder {
+          background: var(--panel2);
+          height: 180px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--muted);
+          font-style: italic;
+          border-bottom: 1px solid var(--border);
+        }
+        .gallery-item p {
+          padding: 12px;
+          margin: 0;
+          font-size: 0.9rem;
+          color: #c4d4c7;
+        }
+
+        .prose p { max-width: 720px; margin: 0 auto 16px; color: #c4d4c7; text-align: center; }
+        .prose ul, ol { max-width: 640px; margin: 0 auto 16px; padding-left: 22px; text-align: left; color: #c4d4c7; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .chip {
+          cursor: pointer;
+          padding: 10px 20px;
+          color: var(--text);
+          background: var(--panel2);
+          border: 2px solid var(--border);
+          border-radius: 8px;
+          font: inherit;
+          font-weight: 600;
+          box-shadow: 3px 3px 0 #000a;
+        }
+        .chip:hover { border-color: var(--accent); }
+        .chip[aria-pressed="true"] { background: var(--accent-d); border-color: var(--accent); color: #04130a; }
+
+        .status { margin: 12px 0 0; color: var(--muted); font-size: .9rem; text-align: center; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+        .grid > .card { flex: 1 1 290px; max-width: 340px; }
+        .grid > .empty { flex: 1 1 100%; max-width: 640px; text-align: center; }
+
+        .card {
+          padding: 18px;
+          background: var(--panel);
+          border: 2px solid var(--border);
+          border-radius: 10px;
+          box-shadow: 4px 4px 0 #000a;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .card.pre { border-style: dashed; }
+        .card h4 { margin: 0; font-size: 1.15rem; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .card p { margin: 0; text-align: center; }
+        .tag {
+          padding: 1px 9px;
+          border-radius: 6px;
+          font-size: .72rem;
+          font-weight: 700;
+          letter-spacing: .05em;
+          background: #14532d;
+          color: #bbf7d0;
+        }
+        .tag.pre { background: #422006; color: var(--warn); }
+        .meta { margin: 0; color: var(--muted); font-size: .88rem; }
+        .actions { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: auto; }
+        .btn {
+          display: inline-block;
+          padding: 10px 18px;
+          text-decoration: none;
+          font-weight: 700;
+          color: #04130a;
+          background: var(--accent);
+          border: 2px solid #04130a;
+          box-shadow: inset -3px -3px 0 var(--accent-d), inset 3px 3px 0 #bbf7d0;
+        }
+        .btn:hover { filter: brightness(1.08); }
+        .link { font-size: .9rem; }
+
+        .crumbs { margin: 28px 0 0; text-align: center; }
+        .crumbs a { color: var(--muted); text-decoration: none; }
+        .crumbs a:hover { color: var(--accent); }
+        #v-title { margin-top: 12px; text-align: center; }
+
+        .empty {
+          margin: 0;
+          padding: 16px;
+          color: var(--muted);
+          border: 2px dashed var(--border);
+          border-radius: 10px;
+        }
+
+        /* Caja secundaria para info / disclaimer */
+        .info-box {
+          max-width: 720px;
+          margin: 40px auto 0;
+          padding: 20px;
+          background: var(--panel);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          font-size: 0.9rem;
+          color: var(--muted);
+        }
+        .info-box h4 { color: var(--text); margin-top: 0; margin-bottom: 8px; }
+
+        footer { border-top: 1px solid var(--border); margin-top: 48px; padding: 24px 0; color: var(--muted); font-size: .9rem; text-align: center; }
+        footer a { margin: 0 10px; white-space: nowrap; }
+
+        :focus-visible { outline: 3px solid var(--warn); outline-offset: 2px; }
+    </style>
+</head>
+<body>
+<header class="hero">
+    <div class="wrap">
+        <p class="kicker">MOD PARA MINECRAFT JAVA - NEOFORGE</p>
+        <h1>MARIAMOD</h1>
+        <p class="lead">Cultivo avanzado y selección genética. Cruzá plantas generación tras generación hasta lograr la cepa suprema.</p>
+        <div class="badges"><span>NeoForge</span><span>Minecraft Java</span><span>100% Código Abierto</span></div>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <div id="lobby">
+        <!-- Sección 1: Explicación del mod -->
+        <section aria-labelledby="t-about" class="prose">
+            <h2 id="t-about">¿De qué trata el mod?</h2>
+            <p><strong>Mariamod</strong> introduce mecánicas profundas de agricultura enfocadas en la genética de las plantas. En lugar de plantar y cosechar de forma tradicional, vas a poder cruzar diferentes variantes silvestres (como la <em>Indica</em> o la <em>Ruderalis</em>), experimentar con sus características y mejorar los cultivos generación tras generación dentro de tu mundo de Minecraft.</p>
+            <p>Diseñado originalmente para jugar con amigos, prioriza la exploración de biomas, la recolección estratégica y la progresión agrícola.</p>
+        </section>
+
+        <!-- Sección de Galería (Espacio para fotos o GIFs) -->
+        <section aria-labelledby="t-gallery">
+            <h2 id="t-gallery">Galería del mod</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="inventario.webp" alt="Inventario MariaMod" style="width:100%; height:auto; aspect-ratio: 16/9; object-fit:contain; background:#000; display:block;">
+                    <p>Proceso de inventario y genética.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="plantasfoto.webp" alt="Plantaciones" style="width:100%; height:auto; aspect-ratio: 16/9; object-fit:contain; background:#000; display:block;">
+                    <p>Cultivos silvestres en su hábitat natural.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="sativafoto.webp" alt="Variedad Sativa" style="width:100%; height:auto; aspect-ratio: 16/9; object-fit:contain; background:#000; display:block;">
+                    <p>Variedad Sativa desarrollada.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="fotoindica.webp" alt="Variedad Indica" style="width:100%; height:auto; aspect-ratio: 16/9; object-fit:contain; background:#000; display:block;">
+                    <p>Variedad Indica en crecimiento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Selector de versión y descargas -->
+        <section aria-labelledby="t-pick">
+            <h2 id="t-pick">Elegí tu versión de Minecraft</h2>
+            <p class="status" style="margin-bottom: 16px;">Seleccioná la versión de tu juego para descargar el archivo <code>.jar</code> correspondiente:</p>
+            <div id="versions" class="grid"></div>
+            <p id="status" class="status" role="status">Cargando versiones disponibles…</p>
+            <noscript>
+                <p class="status">Activá JavaScript o visitá <a href="https://github.com/termo-code/mariamod/releases">la página de Releases en GitHub</a>.</p>
+            </noscript>
+        </section>
+    </div>
+
+    <div id="version-view" hidden>
+        <nav class="crumbs" aria-label="Navegación"><a href="#/">← Volver al inicio</a></nav>
+        <h2 id="v-title"></h2>
+        <p id="v-meta" class="meta" style="text-align: center;"></p>
+        <h3>Cambiar de versión</h3>
+        <div id="v-chips" class="chips" role="group" aria-label="Versiones de Minecraft" style="margin-bottom: 24px;"></div>
+        <h3>Versión estable</h3>
+        <div id="stable" class="grid" style="margin-bottom: 24px;"></div>
+        <h3>Pre-releases <small>(versiones de prueba)</small></h3>
+        <div id="pre" class="grid"></div>
+    </div>
+
+    <!-- Sección 3: Instrucciones de instalación sencillas -->
+    <section aria-labelledby="t-install">
+        <h2 id="t-install">¿Cómo instalarlo?</h2>
+        <ol>
+            <li>Instalador de <strong>NeoForge</strong> correspondiente a la versión de tu Minecraft (por ejemplo, la 1.21.1 pide Java 21).</li>
+            <li>Descargá el archivo <code>.jar</code> del mod desde esta página.</li>
+            <li>Presioná las teclas <code>Win + R</code> en tu PC, escribí <code>%appdata%\.minecraft\mods</code> y pulsá Enter.</li>
+            <li>Copiá el archivo descargado adentro de esa carpeta <code>mods</code>.</li>
+            <li>Abrí tu Minecraft Launcher, elegí el perfil de NeoForge e inicia el mundo</li>
+        </ol>
+    </section>
+
+    <!-- Sección 4 y Disclaimer sutil de seguridad / temática (Para los desconfiados) -->
+    <div class="info-box">
+        <h4>Aclaración sobre seguridad y contenido</h4>
+        <p><strong>¿Desconfiás de descargar archivos o mods de internet?</strong> Es completamente normal. Por eso este mod es <strong>100% de código abierto (Open Source)</strong> bajo licencia MIT. Al no ser un software cerrado, cualquier persona con conocimientos puede auditar cada línea de código para verificar que está totalmente libre de código malicioso.</p>
+        <p style="margin-bottom: 0;"><em>Nota sobre la temática:</em> El mod aborda ficción sobre cultivo dentro del juego y no busca promover ninguna sustancia en la vida real. Si sos desarrollador y querés ver el código profundo, aportar mejoras o pasarlo a otros cargadores (como Fabric), revisá el <a href="https://github.com/termo-code/mariamod">README del repositorio en GitHub</a>.</p>
+    </div>
+
+</main>
+
+<footer>
+    <div class="wrap">
+        <a href="https://github.com/termo-code/mariamod">Código fuente (GitHub)</a>
+        <a href="https://github.com/termo-code/mariamod/releases">Todas las releases</a>
+        <a href="https://github.com/termo-code/mariamod/issues">Reportar un problema</a>
+        <a href="https://github.com/termo-code/mariamod/blob/main/LICENSE">Licencia MIT</a>
+    </div>
+</footer>
+
+<script>
+    // El script de carga de releases de GitHub se mantiene exactamente igual de funcional
+    (() => {
+      "use strict";
+
+      const REPO = "termo-code/mariamod";
+      const LOADER = "NeoForge";
+      const API = "https://api.github.com/repos/" + REPO;
+      const DOWNLOAD_PREFIX = "https://github.com/" + REPO + "/releases/download/";
+      const TAG_PREFIX = "https://github.com/" + REPO + "/releases/tag/";
+      const BRANCHES_URL = "https://github.com/" + REPO + "/branches";
+
+      const FALLBACK = [
+        { tag: "mc1.21.1-v1.0.0-rc.1", file: "mariamod-1.0.0-rc.1.jar", prerelease: true }
+      ];
+
+      const MC_BRANCH = /^mc[-_]?(\d+(?:\.\d+)+)$/i;
+      const MC_TAG = /^mc[-_]?(\d+(?:\.\d+)+)-v(.+)$/i;
+
+      const $lobby = document.getElementById("lobby");
+      const $view = document.getElementById("version-view");
+      const $versions = document.getElementById("versions");
+      const $status = document.getElementById("status");
+      const $title = document.getElementById("v-title");
+      const $meta = document.getElementById("v-meta");
+      const $chips = document.getElementById("v-chips");
+      const $stable = document.getElementById("stable");
+      const $pre = document.getElementById("pre");
+
+      let versions = new Map();
+
+      function mcFromBranch(name) {
+        const m = MC_BRANCH.exec(name || "");
+        return m ? m[1] : null;
+      }
+
+      function parseRelease(tag, branch) {
+        const m = MC_TAG.exec(tag || "");
+        if (m) return { mc: m[1], version: m[2] };
+        const mc = mcFromBranch(branch);
+        return mc ? { mc: mc, version: String(tag).replace(/^v/i, "") } : null;
+      }
+
+      function isPre(version, flag) {
+        return flag === true || /(^|[-.])(rc|beta|alpha|pre|snapshot)/i.test(version);
+      }
+
+      function fromApi(r) {
+        if (!r || r.draft) return null;
+        const parsed = parseRelease(r.tag_name, r.target_commitish);
+        if (!parsed) return null;
+        const jars = (r.assets || []).filter(a => /\.jar$/i.test(a.name));
+        const asset = jars.find(a => !/(sources|dev|javadoc)/i.test(a.name)) || jars[0];
+        if (!asset || !String(asset.browser_download_url).startsWith(DOWNLOAD_PREFIX)) return null;
+        return {
+          tag: r.tag_name,
+          mc: parsed.mc,
+          version: parsed.version,
+          prerelease: isPre(parsed.version, r.prerelease),
+          date: r.published_at ? Date.parse(r.published_at) : 0,
+          size: asset.size || 0,
+          url: asset.browser_download_url,
+          notes: String(r.html_url).startsWith(TAG_PREFIX) ? r.html_url : TAG_PREFIX + encodeURIComponent(r.tag_name)
+        };
+      }
+
+      function fromFallback(f) {
+        const parsed = parseRelease(f.tag, "");
+        if (!parsed) return null;
+        return {
+          tag: f.tag, mc: parsed.mc, version: parsed.version,
+          prerelease: isPre(parsed.version, f.prerelease),
+          date: 0, size: 0,
+          url: DOWNLOAD_PREFIX + f.tag + "/" + f.file,
+          notes: TAG_PREFIX + f.tag
+        };
+      }
+
+      const cmpNum = (a, b) => {
+        const x = a.split(".").map(Number), y = b.split(".").map(Number);
+        for (let i = 0; i < Math.max(x.length, y.length); i++) {
+          const d = (y[i] || 0) - (x[i] || 0);
+          if (d) return d;
+        }
+        return 0;
+      };
+
+      const fmtSize = b => !b ? "" : b >= 1048576 ? (b / 1048576).toFixed(2) + " MB" : Math.max(1, Math.round(b / 1024)) + " KB";
+      const fmtDate = t => t ? new Date(t).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" }) : "";
+
+      function h(tag, cls, text) {
+        const e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text !== undefined) e.textContent = text;
+        return e;
+      }
+
+      function ensure(mc) {
+        if (!versions.has(mc)) versions.set(mc, { mc: mc, branch: null, releases: [] });
+        return versions.get(mc);
+      }
+
+      function build(releaseList, branchNames) {
+        versions = new Map();
+        branchNames.forEach(name => {
+          const mc = mcFromBranch(name);
+          if (mc) ensure(mc).branch = name;
+        });
+        releaseList.forEach(r => ensure(r.mc).releases.push(r));
+        versions.forEach(v => v.releases.sort((a, b) =>
+          (b.date - a.date) || b.tag.localeCompare(a.tag, undefined, { numeric: true })));
+      }
+
+      const sortedVersions = () => [...versions.values()].sort((a, b) => cmpNum(a.mc, b.mc));
+
+      function branchUrl(v) {
+        return v.branch
+          ? "https://github.com/" + REPO + "/tree/" + v.branch.split("/").map(encodeURIComponent).join("/")
+          : BRANCHES_URL;
+      }
+
+      function versionCard(v) {
+        const stable = v.releases.find(r => !r.prerelease);
+        const latest = stable || v.releases[0];
+        const c = h("article", "card" + (stable ? "" : " pre"));
+        const title = h("h4", "", LOADER + " " + v.mc);
+        title.appendChild(h("span", "tag" + (stable ? "" : " pre"),
+          stable ? "ESTABLE" : (latest ? "PRE-RELEASE" : "PRÓXIMAMENTE")));
+        c.appendChild(title);
+        c.appendChild(h("p", "meta", latest
+          ? "Última: " + latest.version + (latest.prerelease ? " (pre-release)" : "")
+          : "Todavía sin descargas"));
+        const actions = h("div", "actions");
+        const go = h("a", "btn", "Ver descargas");
+        go.href = "#/" + v.mc;
+        actions.appendChild(go);
+        const code = h("a", "link", v.branch ? "Código fuente" : "Ver ramas");
+        code.href = branchUrl(v);
+        code.rel = "noopener";
+        actions.appendChild(code);
+        c.appendChild(actions);
+        return c;
+      }
+
+      function downloadCard(r, recommended) {
+        const c = h("article", "card" + (r.prerelease ? " pre" : ""));
+        const title = h("h4", "", "Mariamod " + r.version);
+        title.appendChild(h("span", "tag" + (r.prerelease ? " pre" : ""),
+          r.prerelease ? "PRE-RELEASE" : (recommended ? "RECOMENDADA" : "ESTABLE")));
+        c.appendChild(title);
+        c.appendChild(h("p", "meta", [LOADER, "Minecraft " + r.mc, fmtDate(r.date), fmtSize(r.size)].filter(Boolean).join(" · ")));
+        const actions = h("div", "actions");
+        const btn = h("a", "btn", "Descargar .jar");
+        btn.href = r.url;
+        btn.rel = "noopener";
+        btn.setAttribute("download", "");
+        actions.appendChild(btn);
+        const notes = h("a", "link", "Notas de versión");
+        notes.href = r.notes;
+        notes.rel = "noopener";
+        actions.appendChild(notes);
+        c.appendChild(actions);
+        return c;
+      }
+
+      function fillGroup(container, list, emptyText) {
+        container.replaceChildren();
+        if (!list.length) { container.appendChild(h("p", "empty", emptyText)); return; }
+        list.forEach((r, i) => container.appendChild(downloadCard(r, !r.prerelease && i === 0)));
+      }
+
+      function renderLobby() {
+        document.title = "Mariamod | Descargas";
+        $versions.replaceChildren();
+        const list = sortedVersions();
+        if (!list.length) {
+          $versions.appendChild(h("p", "empty", "Todavía no hay versiones publicadas."));
+          return;
+        }
+        list.forEach(v => $versions.appendChild(versionCard(v)));
+      }
+
+      function renderVersion(v) {
+        document.title = "Mariamod | Minecraft " + v.mc;
+        $title.textContent = "Mariamod para Minecraft " + v.mc;
+
+        $meta.replaceChildren();
+        $meta.appendChild(document.createTextNode(LOADER + " · "));
+        const code = h("a", "", v.branch ? "Código fuente de esta versión (rama " + v.branch + ")" : "Ver ramas del repositorio");
+        code.href = branchUrl(v);
+        code.rel = "noopener";
+        $meta.appendChild(code);
+
+        $chips.replaceChildren();
+        sortedVersions().forEach(x => {
+          const b = h("button", "chip", LOADER + " " + x.mc);
+          b.type = "button";
+          b.setAttribute("aria-pressed", String(x.mc === v.mc));
+          b.addEventListener("click", () => { location.hash = "#/" + x.mc; });
+          $chips.appendChild(b);
+        });
+
+        const none = v.releases.length === 0;
+        fillGroup($stable, v.releases.filter(r => !r.prerelease),
+          none ? "Todavía no hay descargas publicadas para esta versión."
+               : "Todavía no hay una versión estable para Minecraft " + v.mc + ". Probá un pre-release.");
+        fillGroup($pre, v.releases.filter(r => r.prerelease), "No hay pre-releases para esta versión.");
+      }
+
+      function route() {
+        let raw = "";
+        try { raw = decodeURIComponent(location.hash.replace(/^#\/?/, "")); } catch (e) { raw = ""; }
+        const v = raw ? versions.get(raw) : null;
+        $lobby.hidden = !!v;
+        $view.hidden = !v;
+        if (v) renderVersion(v); else renderLobby();
+        window.scrollTo(0, 0);
+      }
+
+      async function fetchJson(url) {
+        const res = await fetch(url, { headers: { Accept: "application/vnd.github+json" } });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      }
+
+      async function load() {
+        const [relRes, brRes] = await Promise.allSettled([
+          fetchJson(API + "/releases?per_page=100"),
+          fetchJson(API + "/branches?per_page=100")
+        ]);
+
+        let releaseList;
+        if (relRes.status === "fulfilled") {
+          releaseList = relRes.value.map(fromApi).filter(Boolean);
+          $status.textContent = "Descargas directas desde GitHub Releases.";
+        } else {
+          console.error("No se pudieron leer las releases:", relRes.reason);
+          releaseList = FALLBACK.map(fromFallback).filter(Boolean);
+          $status.textContent = "No se pudo consultar GitHub, mostrando la lista guardada.";
+        }
+        const branchNames = brRes.status === "fulfilled" ? brRes.value.map(b => b.name) : [];
+
+        build(releaseList, branchNames);
+        route();
+      }
+
+      document.addEventListener("click", e => {
+          const a = e.target.closest("a[href]");
+          if (!a || a.hasAttribute("download")) return;
+          let url;
+          try { url = new URL(a.href, location.href); } catch (err) { return; }
+          if (url.origin === location.origin) return;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+      });
+
+      window.addEventListener("hashchange", route);
+      load();
+    })();
+</script>
+</body>
+</html>
