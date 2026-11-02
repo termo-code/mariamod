@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mariamod:item/hybrid_plus_seeds"
+  }
+}

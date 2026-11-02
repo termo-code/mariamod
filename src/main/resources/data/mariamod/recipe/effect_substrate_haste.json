@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "mariamod:volatile_substrate" },
+    { "item": "minecraft:glow_berries" },
+    { "item": "minecraft:glow_berries" },
+    { "item": "minecraft:glow_berries" },
+    { "item": "minecraft:glow_berries" },
+    { "item": "minecraft:amethyst_shard" },
+    { "item": "minecraft:amethyst_shard" },
+    { "item": "minecraft:amethyst_shard" },
+    { "item": "minecraft:amethyst_shard" }
+  ],
+  "result": {
+    "id": "mariamod:effect_substrate",
+    "count": 1,
+    "components": {
+      "mariamod:substrate_effect": "minecraft:haste"
+    }
+  }
+}

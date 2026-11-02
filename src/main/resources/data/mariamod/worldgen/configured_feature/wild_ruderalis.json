@@ -1,0 +1,9 @@
+{
+  "type": "mariamod:wild_patch",
+  "config": {
+    "variant": "ruderalis_wild",
+    "tries": 3,
+    "spread": 8,
+    "min_y": -64
+  }
+}

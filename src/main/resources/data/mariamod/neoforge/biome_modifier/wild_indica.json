@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_taiga",
+  "features": "mariamod:wild_indica",
+  "step": "vegetal_decoration"
+}

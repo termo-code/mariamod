@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "mariamod:volatile_substrate" },
+    { "item": "minecraft:rabbit_foot" },
+    { "item": "minecraft:rabbit_foot" },
+    { "item": "minecraft:rabbit_foot" },
+    { "item": "minecraft:rabbit_foot" },
+    { "item": "minecraft:rabbit_foot" },
+    { "item": "minecraft:rabbit_foot" },
+    { "item": "minecraft:rabbit_foot" },
+    { "item": "minecraft:rabbit_foot" }
+  ],
+  "result": {
+    "id": "mariamod:effect_substrate",
+    "count": 1,
+    "components": {
+      "mariamod:substrate_effect": "minecraft:jump_boost"
+    }
+  }
+}

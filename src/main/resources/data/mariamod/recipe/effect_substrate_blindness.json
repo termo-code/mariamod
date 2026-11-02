@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "mariamod:volatile_substrate" },
+    { "item": "minecraft:ink_sac" },
+    { "item": "minecraft:ink_sac" },
+    { "item": "minecraft:ink_sac" },
+    { "item": "minecraft:ink_sac" },
+    { "item": "minecraft:ender_eye" },
+    { "item": "minecraft:ender_eye" },
+    { "item": "minecraft:ender_eye" },
+    { "item": "minecraft:ender_eye" }
+  ],
+  "result": {
+    "id": "mariamod:effect_substrate",
+    "count": 1,
+    "components": {
+      "mariamod:substrate_effect": "minecraft:blindness"
+    }
+  }
+}

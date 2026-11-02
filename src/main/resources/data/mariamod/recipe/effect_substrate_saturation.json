@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "mariamod:volatile_substrate" },
+    { "item": "minecraft:honeycomb" },
+    { "item": "minecraft:honeycomb" },
+    { "item": "minecraft:honeycomb" },
+    { "item": "minecraft:honeycomb" },
+    { "item": "minecraft:golden_carrot" },
+    { "item": "minecraft:golden_carrot" },
+    { "item": "minecraft:golden_carrot" },
+    { "item": "minecraft:golden_carrot" }
+  ],
+  "result": {
+    "id": "mariamod:effect_substrate",
+    "count": 1,
+    "components": {
+      "mariamod:substrate_effect": "minecraft:saturation"
+    }
+  }
+}

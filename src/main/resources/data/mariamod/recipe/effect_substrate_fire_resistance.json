@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "mariamod:volatile_substrate" },
+    { "item": "minecraft:magma_cream" },
+    { "item": "minecraft:magma_cream" },
+    { "item": "minecraft:magma_cream" },
+    { "item": "minecraft:magma_cream" },
+    { "item": "minecraft:magma_cream" },
+    { "item": "minecraft:magma_cream" },
+    { "item": "minecraft:magma_cream" },
+    { "item": "minecraft:magma_cream" }
+  ],
+  "result": {
+    "id": "mariamod:effect_substrate",
+    "count": 1,
+    "components": {
+      "mariamod:substrate_effect": "minecraft:fire_resistance"
+    }
+  }
+}

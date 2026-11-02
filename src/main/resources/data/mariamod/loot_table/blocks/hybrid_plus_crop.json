@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [
+        { "condition": "minecraft:block_state_property", "block": "mariamod:hybrid_plus_crop", "properties": { "age": "2" } }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mariamod:hybrid_plus_bud",
+          "functions": [
+            { "function": "minecraft:copy_components", "source": "block_entity", "include": ["mariamod:genetics", "mariamod:harvest_time"] }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [  ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mariamod:hybrid_plus_seeds",
+          "functions": [
+            { "function": "minecraft:copy_components", "source": "block_entity", "include": ["mariamod:genetics"] },
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "parameters": { "extra": 3, "probability": 0.5714286 },
+              "conditions": [
+                { "condition": "minecraft:block_state_property", "block": "mariamod:hybrid_plus_crop", "properties": { "age": "2" } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "functions": [ { "function": "minecraft:explosion_decay" } ]
+}

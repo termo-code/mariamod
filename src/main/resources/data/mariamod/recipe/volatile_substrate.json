@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GMG",
+    "BPB",
+    "GMG"
+  ],
+  "key": {
+    "G": { "item": "minecraft:gunpowder" },
+    "M": { "item": "minecraft:moss_block" },
+    "B": { "item": "minecraft:bone_meal" },
+    "P": {
+      "type": "neoforge:components",
+      "items": "minecraft:potion",
+      "components": {
+        "minecraft:potion_contents": { "potion": "minecraft:awkward" }
+      }
+    }
+  },
+  "result": { "id": "mariamod:volatile_substrate", "count": 1 }
+}

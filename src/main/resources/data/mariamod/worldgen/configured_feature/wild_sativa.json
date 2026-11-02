@@ -1,0 +1,9 @@
+{
+  "type": "mariamod:wild_patch",
+  "config": {
+    "variant": "sativa_wild",
+    "tries": 48,
+    "spread": 2,
+    "min_y": -64
+  }
+}

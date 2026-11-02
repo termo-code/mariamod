@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "age=0": { "model": "mariamod:block/hybrid_plus_stage0" },
+    "age=1": { "model": "mariamod:block/hybrid_plus_stage1" },
+    "age=2": { "model": "mariamod:block/hybrid_plus_stage2" }
+  }
+}

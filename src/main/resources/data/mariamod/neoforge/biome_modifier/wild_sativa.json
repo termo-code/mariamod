@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_jungle",
+  "features": "mariamod:wild_sativa",
+  "step": "vegetal_decoration"
+}

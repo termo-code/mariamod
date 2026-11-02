@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SES",
+    "CVC",
+    "PCT"
+  ],
+  "key": {
+    "S": { "item": "minecraft:sculk" },
+    "E": { "item": "minecraft:sniffer_egg" },
+    "C": { "item": "minecraft:echo_shard" },
+    "V": { "item": "mariamod:volatile_substrate" },
+    "P": { "item": "minecraft:pitcher_plant" },
+    "T": { "item": "minecraft:torchflower" }
+  },
+  "result": { "id": "mariamod:primordial_substrate", "count": 1 }
+}
