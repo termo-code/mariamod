@@ -7,17 +7,18 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -31,8 +32,8 @@ public class PuroItem extends Item {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.BOW;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class PuroItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         return ItemUtils.startUsingInstantly(level, player, hand);
     }
 
@@ -58,7 +59,7 @@ public class PuroItem extends Item {
 
     private static void smoke(ItemStack stack, Level level, LivingEntity user) {
         Genetics genetics = stack.get(ModDataComponents.GENETICS.get());
-        if (genetics == null) {
+        if (genetics == null || !(level instanceof ServerLevel serverLevel)) {
             return;
         }
         Species species = speciesOf(stack);
@@ -67,14 +68,14 @@ public class PuroItem extends Item {
         int amplifier = genetics.potency() - 1;
         int ticks = BalanceConfig.durationSeconds(genetics.durationLevel()) * 20;
         for (ResourceLocation id : NaturalEffects.allFor(species, genetics)) {
-            Optional<Holder.Reference<MobEffect>> holder = BuiltInRegistries.MOB_EFFECT.getHolder(id);
+            Optional<Holder.Reference<MobEffect>> holder = BuiltInRegistries.MOB_EFFECT.get(id);
             if (holder.isEmpty()) {
                 continue;
             }
             MobEffect effect = holder.get().value();
             if (effect.isInstantenous()) {
                 // Los efectos instantáneos se aplican de golpe: solo cuenta la potencia.
-                effect.applyInstantenousEffect(user, user, user, amplifier, 1.0);
+                effect.applyInstantenousEffect(serverLevel, user, user, user, amplifier, 1.0);
             } else {
                 user.addEffect(new MobEffectInstance(holder.get(), ticks, amplifier));
             }

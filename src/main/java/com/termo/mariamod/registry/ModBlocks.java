@@ -4,8 +4,10 @@ import com.termo.mariamod.MariaMod;
 import com.termo.mariamod.block.VariantCropBlock;
 import com.termo.mariamod.genetics.PlantVariant;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -21,10 +23,22 @@ public class ModBlocks {
 
     static {
         for (PlantVariant variant : PlantVariant.values()) {
-            DeferredBlock<VariantCropBlock> crop = BLOCKS.register(variant.cropId(),
-                    () -> new VariantCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT), variant));
+            DeferredBlock<VariantCropBlock> crop = BLOCKS.registerBlock(variant.cropId(),
+                    props -> new VariantCropBlock(props, variant),
+                    cropProperties());
             CROPS.put(variant, crop);
         }
+    }
+
+    // Mismas propiedades que el trigo, escritas a mano (sin ofFullCopy, que arrastra lambdas con la propiedad age de vanilla).
+    private static BlockBehaviour.Properties cropProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.PLANT)
+                .noCollission()
+                .randomTicks()
+                .instabreak()
+                .sound(SoundType.CROP)
+                .pushReaction(PushReaction.DESTROY);
     }
 
     /** Todos los bloques de cultivo (los usa el registro de BlockEntities). */

@@ -92,12 +92,8 @@ public class SeedHybridizationRecipe extends CustomRecipe {
     }
 
     @Override
-    public boolean canCraftInDimensions(int width, int height) {
-        return width >= GRID_SIZE && height >= GRID_SIZE;
-    }
-
-    @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<? extends CustomRecipe> getSerializer() {
         return ModRecipeSerializers.SEED_HYBRIDIZATION.get();
     }
+
 }

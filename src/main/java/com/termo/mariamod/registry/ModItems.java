@@ -21,36 +21,41 @@ public class ModItems {
     public static final DeferredItem<Item> VOLATILE_SUBSTRATE =
             ITEMS.registerSimpleItem("volatile_substrate", new Item.Properties());
 
-    public static final DeferredItem<Item> EFFECT_SUBSTRATE = ITEMS.register("effect_substrate",
-            () -> new EffectSubstrateItem(new Item.Properties()));
+    public static final DeferredItem<Item> EFFECT_SUBSTRATE =
+            ITEMS.registerItem("effect_substrate", EffectSubstrateItem::new, new Item.Properties());
 
     public static final DeferredItem<Item> PRIMORDIAL_SUBSTRATE = ITEMS.registerSimpleItem(
             "primordial_substrate", new Item.Properties().rarity(Rarity.EPIC));
 
-    public static final DeferredItem<Item> SEED_BAG = ITEMS.register("seed_bag",
-            () -> new SeedBagItem(new Item.Properties().stacksTo(1)
-                    .component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
+    public static final DeferredItem<Item> SEED_BAG = ITEMS.registerItem("seed_bag",
+            SeedBagItem::new,
+            new Item.Properties().stacksTo(1)
+                    .component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
 
-    public static final DeferredItem<Item> PURO = ITEMS.register("puro",
-            () -> new PuroItem(new Item.Properties()));
+    public static final DeferredItem<Item> PURO =
+            ITEMS.registerItem("puro", PuroItem::new, new Item.Properties());
 
     public static final Map<PlantVariant, DeferredItem<Item>> SEEDS = new EnumMap<>(PlantVariant.class);
     public static final Map<PlantVariant, DeferredItem<Item>> BUDS = new EnumMap<>(PlantVariant.class);
 
     static {
         for (PlantVariant variant : PlantVariant.values()) {
-            DeferredItem<Item> seeds = ITEMS.register(variant.seedsId(),
-                    () -> new GeneticSeedItem(ModBlocks.CROPS.get(variant).get(), geneticProperties(variant), variant));
+            DeferredItem<Item> seeds = ITEMS.registerItem(variant.seedsId(),
+                    props -> new GeneticSeedItem(ModBlocks.CROPS.get(variant).get(),
+                            withGenetics(props, variant), variant),
+                    new Item.Properties());
             SEEDS.put(variant, seeds);
 
-            DeferredItem<Item> bud = ITEMS.register(variant.budId(),
-                    () -> new GeneticBudItem(geneticProperties(variant), variant));
+            DeferredItem<Item> bud = ITEMS.registerItem(variant.budId(),
+                    props -> new GeneticBudItem(withGenetics(props, variant), variant),
+                    new Item.Properties());
             BUDS.put(variant, bud);
         }
     }
 
-    private static Item.Properties geneticProperties(PlantVariant variant) {
-        return new Item.Properties().component(ModDataComponents.GENETICS.get(), variant.defaultGenetics());
+    // Se llama dentro de la función de registro (tarde), cuando el componente ya existe.
+    private static Item.Properties withGenetics(Item.Properties props, PlantVariant variant) {
+        return props.component(ModDataComponents.GENETICS.get(), variant.defaultGenetics());
     }
 
     public static void register(IEventBus eventBus) {

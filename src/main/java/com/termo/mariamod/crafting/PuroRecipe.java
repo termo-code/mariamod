@@ -72,12 +72,7 @@ public class PuroRecipe extends CustomRecipe {
     }
 
     @Override
-    public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= 2;
-    }
-
-    @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<? extends CustomRecipe> getSerializer() {
         return ModRecipeSerializers.PURO.get();
     }
 }
