@@ -298,7 +298,7 @@
         { tag: "mc1.21.1-v1.0.0-rc.1", file: "mariamod-1.0.0-rc.1.jar", prerelease: true }
       ];
 
-      const MC_BRANCH = /^mc[-_]?(\d+(?:\.\d+)+)$/i;
+      const MC_BRANCH = /^(?:mc[-_]?)?(\d+(?:\.\d+)+)$/i;
       const MC_TAG = /^mc[-_]?(\d+(?:\.\d+)+)-v(.+)$/i;
 
       const $lobby = document.getElementById("lobby");
