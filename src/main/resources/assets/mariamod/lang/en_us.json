@@ -32,6 +32,7 @@
   "tooltip.mariamod.drying": "Drying: %s left",
   "item.mariamod.primordial_substrate": "Primordial Substrate",
   "item.mariamod.seed_bag": "Seed Bag",
+  "message.mariamod.need_lighter": "You need a lighter in your inventory",
 
   "tooltip.mariamod.genetics_header": "Genetic Attributes:",
   "tooltip.mariamod.potency": "Potency: Level %s",
