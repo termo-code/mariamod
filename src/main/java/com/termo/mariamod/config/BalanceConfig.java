@@ -6,11 +6,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-/**
- * TODOS los números de balance del mod, en un solo lugar.
- * Se guardan en config/mariamod-balance.toml. Se editan ahí y se reinicia el juego.
- * Regla: cada paso del desarrollo agrega acá solo lo que usa.
- */
+
 public final class BalanceConfig {
     private BalanceConfig() {}
 
@@ -39,6 +35,7 @@ public final class BalanceConfig {
 
     // ---------- [smoking] ----------
     public static final ModConfigSpec.IntValue SMOKE_USE_TICKS;
+    public static final ModConfigSpec.IntValue LIGHTER_DAMAGE;
 
     // ---------- [drying] ----------
     public static final ModConfigSpec.IntValue DRYING_TICKS;
@@ -106,6 +103,9 @@ public final class BalanceConfig {
         SMOKE_USE_TICKS = BUILDER
                 .comment("Ticks que dura fumar (20 ticks = 1 segundo). Comer dura 32, y fumar dura el doble")
                 .defineInRange("use_ticks", 64, 8, 1200);
+        LIGHTER_DAMAGE = BUILDER
+                .comment("Durabilidad que gasta el encendedor por cada puro fumado (el mechero de pedernal tiene 64)")
+                .defineInRange("lighter_damage", 4, 1, 64);
         BUILDER.pop();
 
         BUILDER.comment("Efectos negativos del bad trip. Son fijos, de nivel 1, y no dependen de la genética").push("bad_trip");

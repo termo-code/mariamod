@@ -32,6 +32,7 @@
   "tooltip.mariamod.drying": "Secando: faltan %s",
   "item.mariamod.primordial_substrate": "Sustrato Primordial",
   "item.mariamod.seed_bag": "Saco de Semillas",
+  "message.mariamod.need_lighter": "Necesitás un encendedor en el inventario",
 
   "block.mariamod.hybrid_primordial_crop": "Planta de Híbrida Primordial"
 }
