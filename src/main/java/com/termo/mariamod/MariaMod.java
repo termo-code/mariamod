@@ -38,7 +38,7 @@ public class MariaMod {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.mariamod"))
                     .withTabsBefore(CreativeModeTabs.COMBAT)
-                    .icon(() -> ModItems.SEEDS.get(PlantVariant.SATIVA_WILD).get().getDefaultInstance())
+                    .icon(() -> ModItems.TAB_ICON.get().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         ModItems.SEEDS.values().forEach(seed -> output.accept(seed.get()));
                         ModItems.BUDS.values().forEach(bud -> output.accept(bud.get()));
