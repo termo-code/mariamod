@@ -27,6 +27,8 @@ public class ModItems {
     public static final DeferredItem<Item> PRIMORDIAL_SUBSTRATE = ITEMS.registerSimpleItem(
             "primordial_substrate", new Item.Properties().rarity(Rarity.EPIC));
 
+    public static final DeferredItem<Item> TAB_ICON = ITEMS.registerSimpleItem("tab_icon", new Item.Properties());
+
     public static final DeferredItem<Item> SEED_BAG = ITEMS.register("seed_bag",
             () -> new SeedBagItem(new Item.Properties().stacksTo(1)
                     .component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
